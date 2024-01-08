@@ -24,9 +24,9 @@ const SupervisorSchema = new mongoose.Schema({
 
     },
     task: {
-        type: Boolean,
+        type: String,
         default: false,
-        // required: true
+        required: true
     },
     blueprint: {
         type: String,
