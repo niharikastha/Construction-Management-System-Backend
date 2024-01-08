@@ -2,6 +2,8 @@ const Project = require('../models/Project');
 const User = require('../models/User');
 const authModels = require('../models/authModels');
 const responseHandler = require('../responseHandler/response_handler');
+const { URL } = require('url'); 
+const path = require('path');
 
 const getAllProject = async(userId,res)=>{ //projectManagerId
     console.log(userId,"projectManagerId")  ;
@@ -114,12 +116,34 @@ const getFileUpload = async (email, projectId, uploadData, res) => {
 
 }
 }
+
+const downloadProject = async (userId,projectId, res) => {
+    try {
+
+      const project = await Project.findById(projectId);
+    //   console.log(project,"proeject");
+      if (!project) {
+        return responseHandler(res, 404, "Project not found", null, true);
+      }
+      const projectPicUrl = new URL(project.projectPic);
+      const fileName = path.basename(projectPicUrl.pathname); 
+      const decodedFileName = decodeURIComponent(fileName);
+      const filePath = path.join(__dirname, '..', 'uploads', decodedFileName);      
+      console.log(filePath, "file path");
+      res.download(filePath, `project_${projectId}.pdf`);
+    } 
+    catch (err) {
+      console.log(err, "error");
+      responseHandler(res, 500, "Server error occurred", null, true);
+    }
+  };
+
 const userService = {
         getAllProject,
         addProject,
         updateProject,
         deleteProject,
         getFileUpload,
-       
+       downloadProject
     }
     module.exports = userService;

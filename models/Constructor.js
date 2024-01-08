@@ -1,11 +1,6 @@
 
 const mongoose = require('mongoose');
 const constructorSchema = new mongoose.Schema({
-    // projectid: {
-    //     type: mongoose.Types.ObjectId,
-    //     ref: 'Project',
-    //     required: true
-    // },
     constructor: {
         type: mongoose.Types.ObjectId,
         ref: "User",
@@ -40,9 +35,9 @@ const constructorSchema = new mongoose.Schema({
         type: String,
         default: new Date()
     },
-    // blueprint: {
+    // bluePrint: {
     //     type: String,
-        // required: true,
+    //     required: false,
 
     // },
 

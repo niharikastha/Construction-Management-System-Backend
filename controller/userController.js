@@ -46,7 +46,7 @@ const addProject = (req, res) => {
         const data = {
             projectManagerId: userId,
             projectName: req.body.projectName,
-            projectPic:imageUrl,
+            projectPic: imageUrl,
             location: req.body.location,
             price: req.body.price,
             description: req.body.description
@@ -78,9 +78,9 @@ const updateProject = (req, res) => {
         const projectId = req.params.projectId
         let project = req.body
         console.log(project);
-            userService.updateProject(userId, projectId, project, res);
+        userService.updateProject(userId, projectId, project, res);
 
-        
+
 
     } catch (err) {
         console.log(err);
@@ -137,7 +137,19 @@ const uploadFile = (req, res) => {
         console.log(err, "error");
     }
 }
+const downloadProject = async (req, res) => {
+    try {
+        const user_details = req.userDetails;
+        const userId = user_details._id;
+        const projectId = req.params.projectId;
+        // console.log(projectId, "projectID")
 
+        userService.downloadProject(userId, projectId, res);
+    } catch (err) {
+        console.log(err, "error");
+        responseHandler(res, 500, "Server error occurred", null, true);
+    }
+};
 
 
 const userController = {
@@ -145,6 +157,7 @@ const userController = {
     addProject,
     updateProject,
     deleteProject,
-    uploadFile
+    uploadFile,
+    downloadProject
 }
-module.exports = userController;
+module.exports = userController;

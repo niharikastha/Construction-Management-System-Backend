@@ -8,6 +8,7 @@ router.get('/getProject',[authTokenRequired.verifyToken, userController.getAllPr
 router.post('/addProject',[authTokenRequired.verifyToken,upload.single("picture"), userController.addProject]);
 router.patch('/updateProject/:projectId',[authTokenRequired.verifyToken,userController.updateProject]);
 router.delete('/deleteProject/:projectId',[authTokenRequired.verifyToken, userController.deleteProject]);
+router.get('/downloadProject/:projectId', [authTokenRequired.verifyToken, userController.downloadProject]);
 
 
 module.exports = router;

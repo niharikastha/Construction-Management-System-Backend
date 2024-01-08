@@ -37,10 +37,9 @@ const addConstructorController = (req, res) => {
         const userId = user_details._id;
         console.log(userId, "id...");
 
-
+        
 
         const data= {
-            // projectId: req.body.projectId,
             constructor: userId,
             constructionName: req.body.constructionName,
             assignment: req.body.assignment,
@@ -48,6 +47,7 @@ const addConstructorController = (req, res) => {
             description: req.body.description,
             startDate: req.body.startDate,
             dueDate: req.body.dueDate,
+            // bluePrint: imageUrl
         }
         console.log(data,"data")
        

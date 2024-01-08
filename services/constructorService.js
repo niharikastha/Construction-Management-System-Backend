@@ -42,7 +42,7 @@ const addConstructor = async (userId, data, res) => {
                     description: data.description,
                     startDate: data.startDate,
                     dueDate: data.dueDate,
-                    // blueprint:data.blueprint
+                    // bluePrint:data.bluePrint
                 })
                 await newConstructor.save();
                 console.log(newConstructor, "newConstructor");
